@@ -1,0 +1,20 @@
+{% extends "inventory/base.html" %}
+{% load static %}
+
+{% block body %}
+    <div class="d-flex align-items-center">
+        <div class="border rounded">
+            <form class="row g-3 needs-validation" method="post">
+                {% csrf_token %}
+                <div class="col-md-6">
+                    <p>
+                        are you sure you want to delete "{{ object }}"
+                    </p>
+                </div>
+                <div class="col-12">
+                    <input class="btn btn-primary" type="submit" value="Submit" />
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

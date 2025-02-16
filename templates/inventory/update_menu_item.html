@@ -1,0 +1,29 @@
+{% extends "inventory/base.html" %}
+{% load static %}
+
+{% block body %}
+    <div class="d-flex align-items-center">
+        <div class="border rounded">
+            <form class="row g-3 needs-validation" method="post">
+                {% csrf_token %}
+                <div class="col-md-6">
+                    <label for="id_title" class="form-label">Name</label>
+                    {{ form.title }}
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="id_price" class="form-label">Quantity</label>
+                    {{ form.price }}
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="col-12">
+                    <input class="btn btn-primary" type="submit" value="Submit" />
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

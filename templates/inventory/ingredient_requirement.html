@@ -1,0 +1,43 @@
+{% extends "inventory/base.html" %}
+{% load static %}
+
+{% block body %}
+    <h3>Insufficient Ingredients</h3>
+    <div class="d-flex align-items-center">
+        <div class="border rounded">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Quantity Inventory</th>
+                    <th scope="col">Quantity Requirement</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                {% for ingredient, recipe_requirement in requirement_ingredients %}
+                    {% if recipe_requirement.quantity > ingredient.quantity %}
+                        <tr>
+                            <th scope="row" class="table-warning">{{ ingredient.id }}</th>
+                            <td class="table-warning"><a
+                                    href="{% url "ingredient_update" ingredient.id %}">{{ ingredient.name }}</a></td>
+                            <td class="table-warning">{{ ingredient.quantity }}</td>
+                            <td class="table-warning">{{ recipe_requirement.quantity }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <th scope="row">{{ ingredient.id }}</th>
+                            <td><a href="{% url "ingredient_update" ingredient.id %}">{{ ingredient.name }}</a></td>
+                            <td>{{ ingredient.quantity }}</td>
+                            <td>{{ recipe_requirement.quantity }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+                </tbody>
+                <tfoot>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+{% endblock %}

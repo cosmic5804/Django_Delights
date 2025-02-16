@@ -1,0 +1,38 @@
+{% extends "inventory/base.html" %}
+{% load static %}
+
+{% block body %}
+    <div class="d-flex align-items-center">
+        <div class="border rounded">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Unit</th>
+                    <th scope="col">Unit Price</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                {% for ingredient in ingredient_list %}
+                    <tr>
+                        <th scope="row">1</th>
+                        <td><a href="{% url "ingredient_update" ingredient.id %}">{{ ingredient.name }}</a></td>
+                        <td>{{ ingredient.quantity }}</td>
+                        <td>{{ ingredient.unit }}</td>
+                        <td>{{ ingredient.unit_price }}</td>
+                        <td><a href="{% url "ingredient_delete" ingredient.id %}">Delete</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td><a href="{% url "ingredient_create" %}">add</a></td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "inventory/base.html" %}
+{% load static %}
+
+{% block body %}
+    <div class="d-flex align-items-center">
+        <div class="border rounded">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">menu Item</th>
+                    <th scope="col">Revenue</th>
+                    <th scope="col">Cost</th>
+                    <th scope="col">Profit</th>
+                    <th scope="col">Time Stamp</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                {% for purchase in purchase_list %}
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>{{ purchase.menu_item }}</td>
+                        <td>{{ purchase.revenue }}</td>
+                        <td>{{ purchase.cost }}</td>
+                        <td>{{ purchase.profit }}</td>
+                        <td>{{ purchase.timestamp }}</td>
+                        <td><a href="{% url "purchase_delete" purchase.id %}">Delete</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td><a href="{% url "purchase_create" %}">add</a></td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+{% endblock %}
